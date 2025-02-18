@@ -1,4 +1,7 @@
 # Theory of the Causal Origin and Self-Referentiality of the Universe
+
+![epilogi](./1.png)
+
 Description
 
 This project presents a theoretical exploration of the Causal Origin and the Self-Referentiality of the Universe. According to the proposed theory, the universe is caused by an unknown external source, a source that possessed all the information from the very beginning and transmitted it to the universe. Since then, the universe has evolved to be self-referential and selective, following the principles of quantum choice.
