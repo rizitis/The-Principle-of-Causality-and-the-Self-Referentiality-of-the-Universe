@@ -1,0 +1,288 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{fancyvrb}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont[Scale=0.85]{DejaVu Sans Mono}
+
+\newtheorem{prop}{Proposition}
+\newtheorem{axiom}{Axiom}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+\newcommand{\bra}[1]{\left\langle#1\right|}
+\newcommand{\Tr}{\operatorname{Tr}}
+
+\title{The Principle of Cause and the Self-Reference of the Universe\\[4pt]
+\large Version 2: a reconstruction based on the Theory of the Logos}
+\author{Ioannis Anagnostakis \\ rizitis@gmail.com}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The first version of this paper argued that an external cause gave the universe all of its information once (\emph{hapax}, ἅπαξ), and that the universe, through ``quantum choice'', is self-referential and conscious. This version keeps the core intuition and corrects its mathematical support. We show that: (1) in a closed quantum system the information of the initial state is preserved exactly, so \emph{hapax} is a theorem of unitarity rather than an assumption; (2) the apparent loss of information in subsystems is a transfer into correlations, not its destruction; (3) ``quantum choice'', if it is a genuine dynamical event, conflicts with (1), so complete information given \emph{hapax} and genuine choice cannot live in the same dynamics; (4) no proper subsystem can contain a complete model of the whole, so the universe's self-knowledge is necessarily partial; (5) consciousness does not follow from information and randomness, and is introduced here as a separate axiom. The resulting framework fits the Theory of the Logos: the structure (\emph{logos}) was given once and is preserved, while will (\emph{breath}) is not a term in the dynamics.
+\end{abstract}
+
+\section{Introduction}
+
+The original idea is this: the cause of the universe is not inside it. It is external and unknown, and it transmitted all the information the universe needs once, at the beginning. The idea is defensible and has a scientific counterpart: the extraordinarily low entropy of the universe's initial state does not follow from the laws of physics; it has to be given \cite{penrose}.
+
+The first version, however, tried to prove more than can be proved, and its mathematical support contained errors. Table~\ref{tab:fixes} summarizes what changes.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{>{\raggedright}p{0.42\textwidth} >{\raggedright\arraybackslash}p{0.48\textwidth}}
+\toprule
+\textbf{Version 1} & \textbf{Version 2} \\
+\midrule
+The formula $\sum_i K_i(\sum_j c_j\ket{\psi_j}\bra{\psi_j})K_i^\dagger$ as a ``new formula'' & It is the standard definition of a quantum channel (Kraus representation) \cite{kraus,nielsen}. We use it as such \\
+$\sum_j c_j\ket{\psi_j}\bra{\psi_j}$ as a ``superposition'' & It is a mixture. The superposition $\sum_i c_i\ket{\psi_i}$ also has off-diagonal terms $c_ic_j^*$ (Section~\ref{sec:states}) \\
+$K_1=\sigma_x$, $K_2=\sigma_z$ without weights & One needs $\sum_i K_i^\dagger K_i=I$. With weights $1/\sqrt2$ the result is $I/2$: all information is lost (Section~\ref{sec:num}) \\
+``If $\rho(t)$ is not stationary, we have proven self-reference'' & The criterion holds for any dynamical system. We give a rigorous definition and a limit (Section~\ref{sec:self}) \\
+Quantum choice leads to consciousness & Randomness is neither choice nor consciousness. Consciousness is introduced as an axiom (Section~\ref{sec:cons}) \\
+The curve $|\sin t\cos t|^2$ as a ``dynamic probability'' & The curve was arbitrary. It is replaced by a probability derived from a Hamiltonian (Figure~\ref{fig:unitary}) \\
+Einstein and Schrödinger equations without a link & Joining them is the open problem of quantum gravity, and stays among the open questions \\
+\bottomrule
+\end{tabular}
+\caption{What Version 2 corrects.}
+\label{tab:fixes}
+\end{table}
+
+\section{Axioms}
+
+The axioms come from the Theory of the Logos. They are metaphysical: the paper does not prove them but uses them as a framework, and at the end it states which conclusions are science and which are not.
+
+\begin{axiom}[Primacy of relation]
+Whatever exists, exists as relation. A ratio (\emph{logos}) exists only between two things that differ and are of the same kind (Euclid, \emph{Elements} V, def.~3).
+\end{axiom}
+
+\begin{axiom}[External cause]
+The cause of the universe is not a state or an operator of the universe. It is not seen in itself; it is seen only through the structure it gave.
+\end{axiom}
+
+\begin{axiom}[Hapax]
+The cause gave the initial state $\rho_0$ and the dynamics once. After that, the universe evolves by its own laws.
+\end{axiom}
+
+\begin{axiom}[Breath]
+Will and experience are not functions of the state and the dynamics. They do not arise from the \emph{logos}, however complex it becomes.
+\end{axiom}
+
+\section{Mathematical framework}
+
+\subsection{States: superposition and mixture}\label{sec:states}
+
+A pure state in superposition is $\ket{\psi}=\sum_i c_i\ket{\psi_i}$ with $\sum_i|c_i|^2=1$. Its density matrix is
+\begin{equation}
+\rho=\ket{\psi}\bra{\psi}=\sum_{i,j}c_ic_j^*\ket{\psi_i}\bra{\psi_j}.
+\end{equation}
+The terms with $i\neq j$ (coherences) are what make the state quantum. A mixture is
+\begin{equation}
+\rho_{\text{mix}}=\sum_j p_j\ket{\psi_j}\bra{\psi_j},\qquad p_j\ge 0,\ \sum_j p_j=1,
+\end{equation}
+and has no such terms. The first version wrote the second and called it the first.
+
+\subsection{Dynamics: unitary evolution and channels}
+
+A closed system with Hamiltonian $H$ evolves unitarily ($\hbar=1$):
+\begin{equation}\label{eq:unitary}
+\rho(t)=U(t)\,\rho_0\,U(t)^\dagger,\qquad U(t)=e^{-iHt}.
+\end{equation}
+An open system is described by a quantum channel, that is, a linear, completely positive, trace-preserving map:
+\begin{equation}\label{eq:channel}
+\Phi(\rho)=\sum_i K_i\rho K_i^\dagger,\qquad \sum_i K_i^\dagger K_i=I.
+\end{equation}
+The condition on the right is not optional: without it $\Phi(\rho)$ is not a state. By Stinespring's theorem \cite{stinespring}, every channel arises from unitary evolution on a larger system:
+\begin{equation}\label{eq:stinespring}
+\Phi(\rho)=\Tr_E\!\left[V\,(\rho\otimes\ket{0}\bra{0}_E)\,V^\dagger\right],\qquad V \text{ unitary on } \mathcal H\otimes\mathcal H_E .
+\end{equation}
+
+As a measure of information we use the von Neumann entropy, in bits \cite{vonneumann}:
+\begin{equation}S(\rho)=-\Tr(\rho\log_2\rho).\end{equation}
+ For a pure state $S=0$; for the maximally mixed state of a qubit $S=1$.
+
+\section{Results}
+
+\subsection{Hapax as a theorem}
+
+\begin{prop}[Conservation of the initial information]\label{prop:apax}
+If the universe is a closed system evolving according to \eqref{eq:unitary}, then for every $t$:
+(a) $S(\rho(t))=S(\rho_0)$; (b) $\rho_0$ is fully recoverable from $\rho(t)$, since $\rho_0=U(t)^\dagger\rho(t)U(t)$; (c) if $\rho_0$ is pure, $\rho(t)$ stays pure.
+\end{prop}
+\begin{proof}
+$U\rho_0U^\dagger$ has the same eigenvalues as $\rho_0$, hence the same entropy and the same purity $\Tr\rho^2$. $U$ is invertible, so the map $\rho_0\mapsto\rho(t)$ is a bijection.
+\end{proof}
+
+Proposition~\ref{prop:apax} is the mathematical form of the original idea. If the cause gave $\rho_0$ and $H$ once, then all of the universe's information at every moment is exactly the information that was given: nothing is lost and nothing is added. Axiom~3 needs nothing beyond unitarity to stand.
+
+\subsection{The apparent loss is a transfer}
+
+\begin{prop}[Subsystems]\label{prop:sub}
+Suppose the whole $A\otimes B$ is in a pure state evolving unitarily. Then $S(\rho_A)$, with $\rho_A=\Tr_B\rho$, can increase while $S(\rho)$ stays $0$. Moreover $S(\rho_A)=S(\rho_B)$ at every moment.
+\end{prop}
+\begin{proof}
+The equality $S(\rho_A)=S(\rho_B)$ for a pure global state follows from the Schmidt decomposition (see also \cite{arakilieb}). The increase of $S(\rho_A)$ is shown in the example of Section~\ref{sec:num}.
+\end{proof}
+
+This is the ``arrow of time'' for the parts: a subsystem's information passes into correlations with its environment (decoherence \cite{zurek}), while for the whole it is preserved. The channel of the first version is exactly such a case: it loses the information for the qubit but, by \eqref{eq:stinespring}, not for the whole.
+
+\subsection{The dilemma of choice}\label{sec:choice}
+
+The ``quantum choice'' of the first version is collapse: after a measurement with projectors $\Pi_k$ and outcome $k$,
+\begin{equation}
+\rho\;\mapsto\;\frac{\Pi_k\rho\,\Pi_k}{\Tr(\Pi_k\rho)},\qquad P(k)=\Tr(\Pi_k\rho).
+\end{equation}
+This map is neither unitary nor linear.
+
+\begin{prop}[Dilemma]\label{prop:dilemma}
+For a closed universe the following cannot both hold: (i) Proposition~\ref{prop:apax} at all times, and (ii) collapse as a real dynamical event of the whole.
+\end{prop}
+\begin{proof}
+Collapse of a state with $0<P(k)<1$ changes the global state in a way that cannot be inverted and that arises from no $U$. This contradicts (b) of Proposition~\ref{prop:apax}.
+\end{proof}
+
+Three routes remain:
+\begin{enumerate}
+\item \textbf{Unitarity everywhere.} Outcomes are relative to subsystems (Everett \cite{everett}, decoherence \cite{zurek}). \emph{Hapax} holds strictly, but ``choice'' is not an event of the dynamics.
+\item \textbf{Physical collapse.} The dynamics is modified (GRW \cite{grw}, Diósi–Penrose). Then there is genuine randomness, but the information was not all given at the beginning. This route is testable: the parameter-free Diósi–Penrose model has been excluded experimentally \cite{donadi}.
+\item \textbf{Choice outside the dynamics.} The structure ($\rho_0$, $H$) was given \emph{hapax} and is preserved, while will is not a term in the equation. This is the route of Axiom~4. It is not physics but metaphysics, and the paper declares it as such.
+\end{enumerate}
+
+In every case, the randomness of collapse is not choice: quantum mechanics supplies only the probabilities $P(k)$, not a reason for which $k$ occurs.
+
+\subsection{Self-reference: definition and limit}\label{sec:self}
+
+\begin{defn}
+A subsystem $A$ contains a \emph{faithful model} of a system $\mathcal U$ if there is an injective map from the states of $\mathcal U$ to the states of $A$ that preserves the distinctions between them. $\mathcal U$ is called \emph{self-referential} if some subsystem of it contains a faithful model of $\mathcal U$, including that subsystem itself.
+\end{defn}
+
+\begin{prop}[Limit of self-knowledge]\label{prop:self}
+In a finite-dimensional system, no proper subsystem $A$, that is, one with $\dim\mathcal H_A<\dim\mathcal H_{\mathcal U}$, contains a faithful model of the whole.
+\end{prop}
+\begin{proof}
+A faithful linear model would be an embedding of $\mathcal H_{\mathcal U}$ into $\mathcal H_A$, which requires $\dim\mathcal H_A\ge\dim\mathcal H_{\mathcal U}$.
+\end{proof}
+
+For general systems, Breuer showed that no physical observer can accurately measure the complete state of a system that contains it \cite{breuer}. The same pattern appears in logic, in Gödel's theorem \cite{godel} and in Lawvere's fixed-point theorem \cite{lawvere}.
+
+So the first version's claim that ``the universe fully knows its own evolution'' does not stand. What stands is more modest: the whole \emph{contains} all the information (Proposition~\ref{prop:apax}), but only subsystems, the observers, have \emph{knowledge}, and it is always partial. Knowledge requires two: the knower and the known (Axiom~1).
+
+\subsection{Consciousness}\label{sec:cons}
+
+Nothing in Propositions~\ref{prop:apax}--\ref{prop:self} produces experience. The structure and function of a system do not explain why there is experience \cite{chalmers}. The paper therefore does not claim that the consciousness of the universe is proven. It introduces it as Axiom~4, and notes that if it is ever shown how experience arises from structure, this axiom falls.
+
+\section{Computational examples}\label{sec:num}
+
+All results in this section are produced by the accompanying file \texttt{compute.py}.
+
+\paragraph{(a) Unitary evolution of one qubit.} Initial state $\ket{+}=(\ket0+\ket1)/\sqrt2$ and $H=\frac{\omega}{2}\sigma_z$. Then
+\begin{equation}
+P_+(t)=|\langle +|\psi(t)\rangle|^2=\cos^2\!\left(\tfrac{\omega t}{2}\right),\qquad S(\rho(t))=0 .
+\end{equation}
+The probability oscillates because the Hamiltonian says so, while the information stays constant (Figure~\ref{fig:unitary}). The numerical solution agrees with the formula to within $10^{-15}$.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.85\textwidth]{fig1.png}
+\caption{Unitary evolution of $\ket{+}$ under $H=\frac{\omega}{2}\sigma_z$: the probability changes, the entropy stays zero.}
+\label{fig:unitary}
+\end{figure}
+
+\paragraph{(b) The channel of the first version.} With $K_1=\sigma_x$, $K_2=\sigma_z$ one has $\sum_iK_i^\dagger K_i=2I$, so this is not a channel, and the sum $\sum_iK_i\rho_0K_i^\dagger=I$ has trace $2$. With the correct weights $K_i\to K_i/\sqrt2$:
+\begin{equation}
+\Phi(\ket{+}\bra{+})=\tfrac12\sigma_x\ket{+}\bra{+}\sigma_x+\tfrac12\sigma_z\ket{+}\bra{+}\sigma_z=\frac{I}{2},\qquad S=1\text{ bit}.
+\end{equation}
+The channel, in other words, erases all of the qubit's information. This is the opposite of what the first version claimed.
+
+\paragraph{(c) Where the information goes.} Qubit $A$ interacts with $N$ environment qubits, $H=\sum_{k=1}^{N}g_k\,\sigma_z^{(A)}\otimes\sigma_x^{(k)}$, with initial state $\ket{+}\otimes\ket{0}^{\otimes N}$. The coherence of $A$ is
+\begin{equation}
+|\rho_A^{01}(t)|=\tfrac12\prod_{k=1}^{N}|\cos(2g_kt)|,
+\end{equation}
+and the numerical solution of the full system agrees with this formula to within $10^{-14}$. For $N=1$ the information leaves and returns. For $N=8$ (with $g_k$ random in $[0.5,1.5]$) it leaves and practically never returns: the mean $S(\rho_A)$ over $gt\in[2,6]$ is $0.994$ bits. The global entropy stays $0$ (maximum numerical value $2\times10^{-15}$). Figure~\ref{fig:decoh} shows all three.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.85\textwidth]{fig2.png}
+\caption{Entropy of subsystem $A$ for $N=1$ and $N=8$ environment qubits, and the global entropy for $N=8$. The information of the part passes into correlations; that of the whole is not lost.}
+\label{fig:decoh}
+\end{figure}
+
+\begin{Verbatim}[frame=single,fontsize=\footnotesize,label=Core of compute.py (simplified)]
+def run(N, gs, times):
+    H = sum(g * kron([sz] + [sx if j == k else I2 for j in range(N)])
+            for k, g in enumerate(gs))
+    psi0 = kron([plus] + [zero] * N)
+    w, V = eigh(H)
+    for t in times:
+        psi = V @ (exp(-1j * w * t) * (V.conj().T @ psi0))
+        rhoA = psi.reshape(2, -1) @ psi.reshape(2, -1).conj().T
+        yield entropy(rhoA), entropy(outer(psi, psi.conj()))
+\end{Verbatim}
+
+\section{Interpretation through the Theory of the Logos}
+
+This section is interpretation, not part of the proof.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{>{\raggedright}p{0.43\textwidth} >{\raggedright\arraybackslash}p{0.47\textwidth}}
+\toprule
+\textbf{In physics} & \textbf{In the Theory of the Logos} \\
+\midrule
+$\rho_0$ and $H$ are given once & the \emph{logos} was given \emph{hapax} (Axiom~3) \\
+Unitarity: information is conserved & physics preserves the \emph{logos} \\
+Growth of $S(\rho_A)$ in the parts & the arrow of time; creation that ``travails together'' \\
+Collapse is neither linear nor unitary & choice is not a term of the \emph{logos} (Axiom~4) \\
+No part contains a complete model of the whole & the ego cannot become the unit; knowledge needs two \\
+Observers hold partial models & man as the link of creation \\
+Low initial entropy, unexplained by the laws & the direction was given at the beginning \\
+\bottomrule
+\end{tabular}
+\caption{Correspondence between the results and the Theory of the Logos.}
+\end{table}
+
+The word \emph{hapax} also carries theological weight: ``νυνὶ δὲ ἅπαξ ἐπὶ συντελείᾳ τῶν αἰώνων'', ``but now once at the end of the ages'' (Hebrews 9:26); ``τῇ ἅπαξ παραδοθείσῃ τοῖς ἁγίοις πίστει'', ``the faith once delivered to the saints'' (Jude 3). In both it means ``once, for all''. Proposition~\ref{prop:apax} gives this sense a precise mathematical form for the structure of the world, not for faith.
+
+\section{What is science and what is not}
+
+\begin{itemize}
+\item \textbf{Proven within the framework of quantum mechanics:} Propositions~\ref{prop:apax} to~\ref{prop:self} and the numerical examples.
+\item \textbf{Testable:} whether evolution is unitary everywhere or there is physical collapse (experiments such as \cite{donadi}). If physical collapse is found, Proposition~\ref{prop:apax} does not hold for the universe and \emph{hapax} needs revision.
+\item \textbf{Open:} why the initial entropy was so low \cite{penrose}; the union of quantum mechanics and general relativity; whether unitarity also holds for black holes.
+\item \textbf{Metaphysics:} Axioms~1--4, the identity of the cause, consciousness.
+\end{itemize}
+
+\section{Conclusions}
+
+The original intuition stands, and in a stronger form than in the first version: in a closed universe the information of the beginning is preserved exactly, with nothing lost and nothing added. This has a price that the first version did not see: complete information given \emph{hapax} and genuine choice cannot both reside in the same dynamics. Moreover, no part of the universe can know it as a whole, and consciousness does not follow from structure. What remains is a consistent framework: the \emph{logos} was given once and is preserved, knowledge of it is always partial and requires two, and will is not a term in the equation.
+
+\begin{thebibliography}{99}
+\bibitem{arakilieb} H.~Araki, E.~H.~Lieb, ``Entropy inequalities'', \emph{Commun.\ Math.\ Phys.} 18 (1970) 160--170.
+\bibitem{breuer} T.~Breuer, ``The impossibility of accurate state self-measurements'', \emph{Philosophy of Science} 62 (1995) 197--214.
+\bibitem{chalmers} D.~J.~Chalmers, ``Facing up to the problem of consciousness'', \emph{Journal of Consciousness Studies} 2(3) (1995) 200--219.
+\bibitem{donadi} S.~Donadi et al., ``Underground test of gravity-related wave function collapse'', \emph{Nature Physics} 17 (2021) 74--78.
+\bibitem{everett} H.~Everett, ```Relative state' formulation of quantum mechanics'', \emph{Rev.\ Mod.\ Phys.} 29 (1957) 454--462.
+\bibitem{godel} K.~Gödel, ``Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I'', \emph{Monatshefte für Mathematik und Physik} 38 (1931) 173--198.
+\bibitem{grw} G.~C.~Ghirardi, A.~Rimini, T.~Weber, ``Unified dynamics for microscopic and macroscopic systems'', \emph{Phys.\ Rev.\ D} 34 (1986) 470--491.
+\bibitem{kraus} K.~Kraus, \emph{States, Effects, and Operations}, Springer, 1983.
+\bibitem{lawvere} F.~W.~Lawvere, ``Diagonal arguments and cartesian closed categories'', \emph{Lecture Notes in Mathematics} 92 (1969) 134--145.
+\bibitem{nielsen} M.~A.~Nielsen, I.~L.~Chuang, \emph{Quantum Computation and Quantum Information}, Cambridge University Press, 2000.
+\bibitem{penrose} R.~Penrose, \emph{The Emperor's New Mind}, Oxford University Press, 1989.
+\bibitem{stinespring} W.~F.~Stinespring, ``Positive functions on C*-algebras'', \emph{Proc.\ Amer.\ Math.\ Soc.} 6 (1955) 211--216.
+\bibitem{vonneumann} J.~von Neumann, \emph{Mathematische Grundlagen der Quantenmechanik}, Springer, 1932.
+\bibitem{zurek} W.~H.~Zurek, ``Decoherence, einselection, and the quantum origins of the classical'', \emph{Rev.\ Mod.\ Phys.} 75 (2003) 715--775.
+\end{thebibliography}
+
+\end{document}
